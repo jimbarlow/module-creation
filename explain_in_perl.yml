@@ -8,8 +8,8 @@
     - condition: comfortably numb
 
   tasks:
-    - name: This is an ansible module written in Perl
-      customperl:
+    - name: This will show you where the vars file comes into play
+      explain_in_perl:
         object: "{{ object }}"
         condition: "{{ condition }}"
       register: modoutput

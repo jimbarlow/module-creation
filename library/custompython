@@ -1,0 +1,28 @@
+#!/usr/bin/python
+
+from ansible.module_utils.basic import *
+import re
+
+def main():
+
+    fields = {
+	"object": {"required": True, "type": "str" },
+	"condition": {"required": False, "type": "str"}
+    }
+
+    module = AnsibleModule(argument_spec=fields)
+    inputobject = module.params["object"]
+    inputcondition = module.params["condition"]
+    didwechange = False
+
+    moduleReturnValue = [{"object": inputobject},{"condition": inputcondition}]
+
+    if re.match('[aeiouyAEIOUY]', inputobject) is not None:
+        didwechange = True
+
+    module.exit_json(changed=didwechange, meta=moduleReturnValue)
+
+
+if __name__ == '__main__':
+    main()
+
